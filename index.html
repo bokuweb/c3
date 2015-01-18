@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <link href="css/c3.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="chart"></div>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/c3.js"></script>
+    <script>
+      var colums = [
+        ['data1',100],
+        ['data2',200]
+      ]
+      var chart = c3.generate({
+        data: {
+          columns: [
+            ['data1',100],
+            ['data2',200]
+          ],
+          types: {
+            data1: 'spline',
+            data2: 'spline'
+          }
+        },
+        size: {
+          // width: 640,
+          height: 480
+        },
+        color: {
+          pattern: ['#ccc', '#aec7e8']
+        },
+        interaction: {
+          enabled: false // If false is set, all of interactions (showing/hiding tooltip, selection, mouse events, etc) will be disabled.
+        },
+        transition: {
+          duration: 500 // Set duration of transition (in milliseconds) for chart animation.
+        },
+        point: {
+          show: false
+        },
+        line: {
+          connectNull: true
+        },
+        axis: {
+          x: {
+            max: 100,
+            //show: false
+            tick: {
+              values: []
+            }
+          },
+          y: {
+            tick: {
+              values: []
+            }
+          }
+        }
+      });
+
+      (function () {
+        update = function () {
+          for (var i = colums.length - 1; i >= 0; i--) {
+            colums[i].push(Math.random() * 100);
+          };
+          // 更新
+          chart.load({
+            columns: colums
+          });
+          // 再描画
+          chart.flush();
+          setTimeout(update, 16);
+        }
+        setTimeout(update, 16);
+      }());
+    </script>
+  </body>
+</html>
