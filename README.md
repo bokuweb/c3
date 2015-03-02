@@ -2,7 +2,7 @@
 
 c3.jsを使用し、setTimerIntervalでチャートを描画するサンプル。
 
-## Demo Page
+## デモ
 
 http://bokuweb.github.io/c3/
 
